@@ -1,0 +1,1860 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ast" nsURI="http://ingi.dk/emf/python" nsPrefix="dk.ingi.emf.python">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractMod" abstract="true">
+    <eAnnotations source="python">
+      <details key="type" value="mod"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Module" eSuperTypes="#//AbstractMod">
+    <eAnnotations source="python">
+      <details key="type" value="Module"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" upperBound="-1" eType="#//AbstractStmt"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeIgnores" upperBound="-1"
+        eType="#//TypeIgnore" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="type_ignores"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interactive" eSuperTypes="#//AbstractMod">
+    <eAnnotations source="python">
+      <details key="module" value="ast"/>
+      <details key="type" value="Interactive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" upperBound="-1" eType="#//AbstractStmt"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//AbstractMod">
+    <eAnnotations source="python">
+      <details key="type" value="Expression"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionType" eSuperTypes="#//AbstractMod">
+    <eAnnotations source="python">
+      <details key="type" value="FunctionType"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="argTypes" upperBound="-1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="argtypes"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returns" lowerBound="1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="returns"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractStmt" abstract="true">
+    <eAnnotations source="python">
+      <details key="type" value="stmt"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionDef" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="FunctionDef"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="name"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" lowerBound="1" eType="#//Arguments"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="args"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" upperBound="-1" eType="#//AbstractStmt"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="decorators" upperBound="-1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="decorator_list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returns" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="returns"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeComment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="type_comment"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeParams" upperBound="-1"
+        eType="#//AbstractTypeParam" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="type_params"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AsyncFunctionDef" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="AsyncFunctionDef"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="name"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" lowerBound="1" eType="#//Arguments"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="args"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" upperBound="-1" eType="#//AbstractStmt"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="decorators" upperBound="-1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="decorator_list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returns" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="returns"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeComment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="type_comment"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeParams" upperBound="-1"
+        eType="#//AbstractTypeParam" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="type_params"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassDef" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="ClassDef"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="name"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bases" upperBound="-1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="bases"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keywords" upperBound="-1"
+        eType="#//Keyword" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="keywords"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" upperBound="-1" eType="#//AbstractStmt"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="decorators" upperBound="-1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="decorator_list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeParams" upperBound="-1"
+        eType="#//AbstractTypeParam" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="type_params"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Return" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="Return"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Delete" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="Delete"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targets" upperBound="-1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="targets"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Assign" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="Assign"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targets" upperBound="-1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="targets"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeComment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="type_comment"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeAlias" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="TypeAlias"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="name"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeParams" upperBound="-1"
+        eType="#//AbstractTypeParam" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="type_params"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AugAssign" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="AugAssign"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="target"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="op" lowerBound="1" eType="#//AbstractOperator"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="op"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnAssign" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="AnnAssign"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="target"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotation" lowerBound="1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="annotation"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="simple" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="python">
+        <details key="name" value="simple"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="For" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="For"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="target"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="iter" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="iter"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" upperBound="-1" eType="#//AbstractStmt"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orElse" upperBound="-1"
+        eType="#//AbstractStmt" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="orelse"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeComment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="type_comment"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AsyncFor" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="AsyncFor"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="target"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="iter" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="iter"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" upperBound="-1" eType="#//AbstractStmt"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orElse" upperBound="-1"
+        eType="#//AbstractStmt" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="orelse"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeComment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="type_comment"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="While" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="While"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="test" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="test"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" upperBound="-1" eType="#//AbstractStmt"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orElse" upperBound="-1"
+        eType="#//AbstractStmt" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="orelse"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="If" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="If"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="test" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="test"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" upperBound="-1" eType="#//AbstractStmt"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orElse" upperBound="-1"
+        eType="#//AbstractStmt" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="orelse"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="With" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="With"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
+        eType="#//WithItem" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="items"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" upperBound="-1" eType="#//AbstractStmt"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeComment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="type_comment"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AsyncWith" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="AsyncWith"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
+        eType="#//WithItem" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="items"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" upperBound="-1" eType="#//AbstractStmt"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeComment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="type_comment"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Match" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="Match"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subject" lowerBound="1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="subject"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cases" upperBound="-1"
+        eType="#//MatchCase" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="cases"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Raise" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="Raise"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exc" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="exc"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cause" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="cause"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Try" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="Try"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" upperBound="-1" eType="#//AbstractStmt"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="handlers" upperBound="-1"
+        eType="#//AbstractExceptHandler" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="handlers"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orElse" upperBound="-1"
+        eType="#//AbstractStmt" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="orelse"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="finalBody" upperBound="-1"
+        eType="#//AbstractStmt" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="finalbody"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TryStar" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="TryStar"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" upperBound="-1" eType="#//AbstractStmt"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="handlers" upperBound="-1"
+        eType="#//AbstractExceptHandler" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="handlers"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orElse" upperBound="-1"
+        eType="#//AbstractStmt" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="orelse"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="finalBody" upperBound="-1"
+        eType="#//AbstractStmt" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="finalbody"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Assert" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="Assert"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="test" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="test"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="msg" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="msg"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Import" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="Import"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="names" upperBound="-1"
+        eType="#//Alias" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="names"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImportFrom" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="ImportFrom"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="module" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="module"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="names" upperBound="-1"
+        eType="#//Alias" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="names"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="python">
+        <details key="name" value="level"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Global" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="Global"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="names" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="names"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NonLocal" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="Nonlocal"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="names" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="names"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expr" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="Expr"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pass" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="Pass"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Break" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="Break"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Continue" eSuperTypes="#//AbstractStmt">
+    <eAnnotations source="python">
+      <details key="type" value="Continue"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractExpr" abstract="true">
+    <eAnnotations source="python">
+      <details key="type" value="expr"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BoolOp" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="BoolOp"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="values"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="op" lowerBound="1" eType="#//AbstractBoolOp"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="op"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedExpr" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="NamedExpr"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="target"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BinOp" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="BinOp"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="left"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="right"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="op" lowerBound="1" eType="#//AbstractOperator"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="op"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryOp" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="UnaryOp"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" lowerBound="1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="operand"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="op" eType="#//AbstractUnaryOp"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="op"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Lambda" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="Lambda"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" lowerBound="1" eType="#//Arguments"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="args"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IfExp" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="IfExp"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="test" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="test"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orElse" lowerBound="1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="orelse"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Dict" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="Dict"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keys" upperBound="-1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="keys"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="values"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Set" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="Set"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elts" upperBound="-1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="elts"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListComp" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="ListComp"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elt" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="elt"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generators" upperBound="-1"
+        eType="#//Comprehension" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="generators"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SetComp" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="SetComp"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elt" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="elt"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generators" upperBound="-1"
+        eType="#//Comprehension" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="generators"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DictComp" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="DictComp"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="key" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="key"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generators" upperBound="-1"
+        eType="#//Comprehension" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="generators"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GeneratorExp" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="GeneratorExp"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elt" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="elt"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generators" upperBound="-1"
+        eType="#//Comprehension" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="generators"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Await" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="Await"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Yield" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="Yield"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="YieldFrom" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="YieldFrom"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Compare" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="Compare"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ops" upperBound="-1" eType="#//AbstractComparisonOperator"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="ops"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="left"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comparators" upperBound="-1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="comparators"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Call" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="Call"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="func" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="func"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="args"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keywords" upperBound="-1"
+        eType="#//Keyword" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="keywords"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FormattedValue" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="FormattedValue"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="conversion" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="python">
+        <details key="name" value="conversion"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="formatSpec" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="format_spec"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="JoinedStr" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="JoinedStr"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="values"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constant" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="Constant"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="kind"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="Attribute"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attr" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="attr"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ctx" lowerBound="1" eType="#//AbstractExprContext"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="ctx"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Subscript" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="Subscript"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="slice" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="slice"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ctx" lowerBound="1" eType="#//AbstractExprContext"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="ctx"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Starred" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="Starred"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ctx" lowerBound="1" eType="#//AbstractExprContext"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="ctx"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Name" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="Name"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="id"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ctx" lowerBound="1" eType="#//AbstractExprContext"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="ctx"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="List" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="List"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elts" upperBound="-1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="elts"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ctx" lowerBound="1" eType="#//AbstractExprContext"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="ctx"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tuple" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="Tuple"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elts" upperBound="-1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="elts"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ctx" lowerBound="1" eType="#//AbstractExprContext"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="ctx"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Slice" eSuperTypes="#//AbstractExpr">
+    <eAnnotations source="python">
+      <details key="type" value="Slice"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lower" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="lower"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="upper" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="upper"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="step" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="step"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractOperator">
+    <eAnnotations source="python">
+      <details key="type" value="operator"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Add" eSuperTypes="#//AbstractOperator">
+    <eAnnotations source="python">
+      <details key="type" value="Add"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Sub" eSuperTypes="#//AbstractOperator">
+    <eAnnotations source="python">
+      <details key="type" value="Sub"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Mult" eSuperTypes="#//AbstractOperator">
+    <eAnnotations source="python">
+      <details key="type" value="Mult"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MatMult" eSuperTypes="#//AbstractOperator">
+    <eAnnotations source="python">
+      <details key="type" value="MatMult"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Div" eSuperTypes="#//AbstractOperator">
+    <eAnnotations source="python">
+      <details key="type" value="Div"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Mod" eSuperTypes="#//AbstractOperator">
+    <eAnnotations source="python">
+      <details key="type" value="Mod"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pow" eSuperTypes="#//AbstractOperator">
+    <eAnnotations source="python">
+      <details key="type" value="Pow"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LShift" eSuperTypes="#//AbstractOperator">
+    <eAnnotations source="python">
+      <details key="type" value="LShift"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RShift" eSuperTypes="#//AbstractOperator">
+    <eAnnotations source="python">
+      <details key="type" value="RShift"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BitOr" eSuperTypes="#//AbstractOperator">
+    <eAnnotations source="python">
+      <details key="type" value="BitOr"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BitXor" eSuperTypes="#//AbstractOperator">
+    <eAnnotations source="python">
+      <details key="type" value="BitXor"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BitAnd" eSuperTypes="#//AbstractOperator">
+    <eAnnotations source="python">
+      <details key="type" value="BitAnd"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FloorDiv" eSuperTypes="#//AbstractOperator">
+    <eAnnotations source="python">
+      <details key="type" value="FloorDiv"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractUnaryOp" abstract="true" interface="true">
+    <eAnnotations source="python">
+      <details key="type" value="unaryop"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Invert" eSuperTypes="#//AbstractUnaryOp">
+    <eAnnotations source="python">
+      <details key="type" value="Invert"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="#//AbstractUnaryOp">
+    <eAnnotations source="python">
+      <details key="type" value="Not"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UAdd" eSuperTypes="#//AbstractUnaryOp">
+    <eAnnotations source="python">
+      <details key="type" value="UAdd"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="USub" eSuperTypes="#//AbstractUnaryOp">
+    <eAnnotations source="python">
+      <details key="type" value="USub"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Eq" eSuperTypes="#//AbstractComparisonOperator">
+    <eAnnotations source="python">
+      <details key="type" value="Eq"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NotEq" eSuperTypes="#//AbstractComparisonOperator">
+    <eAnnotations source="python">
+      <details key="type" value="NotEq"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Lt" eSuperTypes="#//AbstractComparisonOperator">
+    <eAnnotations source="python">
+      <details key="type" value="Lt"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LtE" eSuperTypes="#//AbstractComparisonOperator">
+    <eAnnotations source="python">
+      <details key="type" value="LtE"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Gt" eSuperTypes="#//AbstractComparisonOperator">
+    <eAnnotations source="python">
+      <details key="type" value="Gt"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GtE" eSuperTypes="#//AbstractComparisonOperator">
+    <eAnnotations source="python">
+      <details key="type" value="GtE"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Is" eSuperTypes="#//AbstractComparisonOperator">
+    <eAnnotations source="python">
+      <details key="type" value="Is"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsNot" eSuperTypes="#//AbstractComparisonOperator">
+    <eAnnotations source="python">
+      <details key="type" value="IsNot"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="In" eSuperTypes="#//AbstractComparisonOperator">
+    <eAnnotations source="python">
+      <details key="type" value="In"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NotIn" eSuperTypes="#//AbstractComparisonOperator">
+    <eAnnotations source="python">
+      <details key="type" value="NotIn"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractComparisonOperator" abstract="true"
+      interface="true">
+    <eAnnotations source="python">
+      <details key="type" value="cmpop"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Comprehension">
+    <eAnnotations source="python">
+      <details key="type" value="comprehension"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="target"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="iter" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="iter"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ifs" upperBound="-1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="ifs"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAsync" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="python">
+        <details key="name" value="is_async"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractExceptHandler" abstract="true">
+    <eAnnotations source="python">
+      <details key="type" value="excepthandler"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lineno" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="python">
+        <details key="name" value="lineno"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="colOffset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="python">
+        <details key="name" value="col_offset"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endLineno" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="python">
+        <details key="name" value="end_lineno"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endColOffset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="python">
+        <details key="name" value="end_col_offset"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExceptHandler" eSuperTypes="#//AbstractExceptHandler">
+    <eAnnotations source="python">
+      <details key="type" value="ExceptHandler"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="type"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="name"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" upperBound="-1" eType="#//AbstractStmt"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Arguments">
+    <eAnnotations source="python">
+      <details key="type" value="arguments"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="posOnlyArgs" upperBound="-1"
+        eType="#//Arg" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="posonlyargs"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Arg"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="args"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="varArg" eType="#//Arg"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="vararg"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="kwOnlyArgs" upperBound="-1"
+        eType="#//Arg" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="kwonlyargs"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="kwDefaults" upperBound="-1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="kw_defaults"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="kwArg" eType="#//Arg" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="kwarg"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaults" upperBound="-1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="defaults"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Arg">
+    <eAnnotations source="python">
+      <details key="type" value="arg"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="arg" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="arg"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotation" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="annotation"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeComment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="type_comment"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Keyword">
+    <eAnnotations source="python">
+      <details key="type" value="keyword"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="arg" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="arg"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Alias">
+    <eAnnotations source="python">
+      <details key="type" value="alias"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="name"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="asName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="asname"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WithItem">
+    <eAnnotations source="python">
+      <details key="type" value="withitem"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextExpr" lowerBound="1"
+        eType="#//AbstractExpr" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="context_expr"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="optionalVars" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="optional_vars"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MatchCase">
+    <eAnnotations source="python">
+      <details key="type" value="match_case"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
+        eType="#//AbstractPattern" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="pattern"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="guard" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="guard"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" upperBound="-1" eType="#//AbstractStmt"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="body"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractPattern" abstract="true">
+    <eAnnotations source="python">
+      <details key="type" value="pattern"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MatchSingleton" eSuperTypes="#//AbstractPattern">
+    <eAnnotations source="python">
+      <details key="type" value="MatchSingleton"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//Constant"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MatchSequence" eSuperTypes="#//AbstractPattern">
+    <eAnnotations source="python">
+      <details key="type" value="MatchSequence"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"
+        eType="#//AbstractPattern" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="patterns"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MatchMapping" eSuperTypes="#//AbstractPattern">
+    <eAnnotations source="python">
+      <details key="type" value="MatchMapping"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keys" upperBound="-1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="keys"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"
+        eType="#//AbstractPattern" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="patterns"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rest" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="rest"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MatchClass" eSuperTypes="#//AbstractPattern">
+    <eAnnotations source="python">
+      <details key="type" value="MatchClass"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cls" lowerBound="1" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="cls"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"
+        eType="#//AbstractPattern" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="patterns"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kwdAttrs" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="kwd_attrs"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="kwdPatterns" upperBound="-1"
+        eType="#//AbstractPattern" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="kwd_patterns"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MatchStar" eSuperTypes="#//AbstractPattern">
+    <eAnnotations source="python">
+      <details key="type" value="MatchStar"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="name"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MatchAs" eSuperTypes="#//AbstractPattern">
+    <eAnnotations source="python">
+      <details key="type" value="MatchAs"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//AbstractPattern"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="pattern"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="name"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MatchOr" eSuperTypes="#//AbstractPattern">
+    <eAnnotations source="python">
+      <details key="type" value="MatchOr"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"
+        eType="#//AbstractPattern" containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="patterns"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeIgnore">
+    <eAnnotations source="python">
+      <details key="type" value="TypeIgnore"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lineno" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="python">
+        <details key="name" value="lineno"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tag" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="tag"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractTypeParam" abstract="true">
+    <eAnnotations source="python">
+      <details key="type" value="type_param"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeVar" eSuperTypes="#//AbstractTypeParam">
+    <eAnnotations source="python">
+      <details key="module" value="ast"/>
+      <details key="type" value="TypeVar"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="name"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bound" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="bound"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultValue" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="default_value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParamSpec" eSuperTypes="#//AbstractTypeParam">
+    <eAnnotations source="python">
+      <details key="module" value="ast"/>
+      <details key="type" value="ParamSpec"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="name"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultValue" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="default_value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeVarTuple" eSuperTypes="#//AbstractTypeParam">
+    <eAnnotations source="python">
+      <details key="type" value="TypeVarTuple"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="python">
+        <details key="name" value="name"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultValue" eType="#//AbstractExpr"
+        containment="true">
+      <eAnnotations source="python">
+        <details key="name" value="default_value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Load" eSuperTypes="#//AbstractExprContext">
+    <eAnnotations source="python">
+      <details key="type" value="Load"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Store" eSuperTypes="#//AbstractExprContext">
+    <eAnnotations source="python">
+      <details key="type" value="Store"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Del" eSuperTypes="#//AbstractExprContext">
+    <eAnnotations source="python">
+      <details key="type" value="Del"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractExprContext" abstract="true">
+    <eAnnotations source="python">
+      <details key="type" value="expr_context"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractBoolOp" abstract="true" interface="true">
+    <eAnnotations source="python">
+      <details key="type" value="boolop"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="#//AbstractBoolOp">
+    <eAnnotations source="python">
+      <details key="type" value="And"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="#//AbstractBoolOp">
+    <eAnnotations source="python">
+      <details key="type" value="Or"/>
+      <details key="module" value="ast"/>
+    </eAnnotations>
+  </eClassifiers>
+</ecore:EPackage>

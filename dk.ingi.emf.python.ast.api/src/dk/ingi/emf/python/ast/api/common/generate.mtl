@@ -1,0 +1,208 @@
+[comment encoding = UTF-8 /]
+[module generate('http://www.eclipse.org/emf/2002/Ecore')]
+
+
+[template public generateElement(anEPackage : EPackage)]
+[comment @main/]
+[file ('visitor.py', false, 'UTF-8')]
+import ast
+from pathlib import Path
+from collections import defaultdict
+from collections.abc import Mapping
+from typing import Final, final, overload
+
+import jpype
+import jpype.imports
+import sys
+eclipse_app: Final['['/]Path] = Path('/Applications/Eclipse.app')
+emf_project_dir: Final = Path(__file__).parent.parent.parent / 'dk.ingi.emf.python.ast'
+
+classpath = ['['/]
+    emf_project_dir / 'bin',
+    # TODO: Search for the .jar's within the eclipse installation:
+    eclipse_app / 'Contents/Eclipse/plugins/org.eclipse.emf.codegen.ecore_2.43.0.v20250810-1438.jar',
+    eclipse_app / 'Contents/Eclipse/plugins/org.eclipse.emf.common_2.43.0.v20250629-1403.jar',
+    eclipse_app / 'Contents/Eclipse/plugins/org.eclipse.emf.ecore.xmi_2.39.0.v20250414-1351.jar',
+    eclipse_app / 'Contents/Eclipse/plugins/org.eclipse.emf.ecore_2.40.0.v20250803-1633.jar',
+]
+
+jpype.startJVM(classpath=classpath)
+
+from org.eclipse.emf.common.util import URI
+from org.eclipse.emf.ecore import EFactory, EPackage
+from org.eclipse.emf.ecore.resource import Resource, ResourceSet
+from org.eclipse.emf.ecore.resource.impl import ResourceSetImpl
+from org.eclipse.emf.ecore.xmi.impl import XMIResourceFactoryImpl
+from java.util import Collections
+import dk.ingi.emf.python.ast
+
+ast_field_2_value_type = defaultdict(lambda: defaultdict(set))
+
+
+
+@final
+class Visitor:
+    __slots__ = ('_factory',)
+
+    __node_type_names: Final['['/]Mapping['['/]type, str]] = {
+        bool: 'NameConstant',
+        type(None): 'NameConstant',
+        int: 'Num',
+        float: 'Num',
+        complex: 'Num',
+        str: 'Str',
+        bytes: 'Bytes',
+        type(...): 'Ellipsis',
+    }
+
+    def __init__(self) -> None:
+        package = dk.ingi.emf.python.ast.AstPackage.eINSTANCE
+        self._factory: Final = package.getAstFactory()
+
+    @overload
+    def visit(self, node: None) -> dk.ingi.emf.python.ast.Constant:
+        ...
+
+    @overload
+    def visit(self, node: str) -> str:
+        ...
+
+[for (class : EClass | anEPackage.eClassifiers
+      ->selectByKind(EClass)
+      ->reject(class : EClass | class.abstract)) separator('\n')]
+    [let python_node_type : String
+         = class.getEAnnotation('python').details
+           ->select(d | d.key = 'type')
+           ->first().value]
+        [let fq_python_node_type : String
+             = python_node_type.prefix('ast.')]
+    @overload
+    def visit(
+            self,
+            node: [fq_python_node_type/]
+    ) -> [anEPackage.nsPrefix/].[anEPackage.name/].[class.name/]:
+        ...
+    [/let]
+    [/let]
+[/for]
+    def visit(self, node):
+        """Visit a node."""
+        if not isinstance(node, ast.AST):
+            if node is None:
+                return self.visit(ast.Constant(value=None))
+            return node
+        return getattr(self, f'visit_{node.__class__.__name__}')(node)
+
+    @staticmethod
+    def __xml10_sanitize(s: str) -> str:
+        """Sanitize a string that cannot be serialized to XML 1.0."""
+        out: list['['/]str] = ['['/]]
+        for ch in s:
+            cp = ord(ch)
+            if (
+                cp == 0x09
+                or cp == 0x0A
+                or cp == 0x0D
+                or 0x20 <= cp <= 0xD7FF
+                or 0xE000 <= cp <= 0xFFFD
+                or 0x10000 <= cp <= 0x10FFFF
+            ):
+                out.append(ch)
+            else:
+                out.append(f'\\x{cp:02X}' if cp <= 0xFF
+                           else f'\\u{cp:04X}' if cp <= 0xFFFF
+                           else f'\\U{cp:08X}')
+        return ''.join(out)
+
+    def visit_Constant(self, node):
+        value = node.value
+        if isinstance(value, str):
+            value = self.__xml10_sanitize(value)
+        type_name = self.__node_type_names.get(type(value))
+        if type_name is None:
+            for cls, name in self.__node_type_names.items():
+                if isinstance(value, cls):
+                    type_name = name
+                    break
+        if type_name is not None:
+            constant = self._factory.createConstant()
+            constant.setKind(type_name)
+            constant.setValue(str(value))
+            return constant
+        raise TypeError(f'Unsupported constant type: {type(value)}')
+
+[for (class : EClass | anEPackage.eClassifiers
+      ->selectByKind(EClass)
+      ->reject(class : EClass | class.name = 'Constant' or class.abstract)) separator('\n')]
+    [let python_node_type : String
+         = class.getEAnnotation('python').details
+           ->select(d | d.key = 'type')
+           ->first().value]
+        [let fq_python_node_type : String
+             = python_node_type.prefix('ast.')]
+    def visit_[python_node_type/](
+            self,
+            node: [fq_python_node_type/]
+    ) -> [anEPackage.nsPrefix/].[anEPackage.name/].[class.name/]:
+        """Map [fq_python_node_type/] to [anEPackage.nsPrefix/].[class.name/]."""
+        emf_node = self._factory.create[class.name/]()
+    [for (feature : EStructuralFeature | class.eAllStructuralFeatures)]
+        [let field : String = feature.getEAnnotation('python').details->select(d | d.key = 'name')->first().value]
+        if node.[field/] is not None:
+                [if (feature.many)]
+            for i in node.[field/]:
+                ast_field_2_value_type['['/]type(node).__name__]['['/]'[field/]'].add(type(i).__name__)
+                emf_node.get[feature.name.toUpperFirst()/]().add(self.visit(i))
+                [/if]
+                [if not (feature.many)]
+            ast_field_2_value_type['['/]type(node).__name__]['['/]'[field/]'].add(type(node.[field/]).__name__)
+            emf_node.set[feature.name.toUpperFirst()/](self.visit(node.[field/]))
+                [/if]
+            [/let]
+        [/for]
+        return emf_node
+    [/let]
+    [/let]
+[/for]
+
+
+def main():
+    # TODO: Take the module path as argument, for now we just self-parse this file.
+    module_path = Path(__file__)
+    reg = Resource.Factory.Registry.INSTANCE
+    tree = ast.parse(module_path.read_text())
+    visitor = Visitor()
+    try:
+        module = visitor.visit(tree)
+    except Exception as e:
+        print(f'Failed to parse {module_path}: {e}')
+        raise e
+
+    # Saving the ast model to a file.
+    m = reg.getExtensionToFactoryMap()
+    m.put("ast", XMIResourceFactoryImpl())
+    output = (Path(__file__).parent.parent / 'models'
+              / module_path.relative_to(Path(__file__).parent.parent).with_suffix('.ast'))
+    output.parent.mkdir(parents=True, exist_ok=True)
+    rs = ResourceSetImpl()
+    resourceURI = URI.createURI(str(output))
+    resource = rs.createResource(resourceURI)
+    resource.setEncoding('UTF-8')
+    resource.getContents().add(module)
+
+    module_eclass = dk.ingi.emf.python.ast.AstPackage.eINSTANCE.getModule()
+
+    try:
+        resource.save(Collections.EMPTY_MAP)
+    except Exception as e:
+        print(f'Failed to save {module}: {e}')
+        print(f'While parsing {module_path}')
+        raise e
+
+
+
+if __name__ == '__main__':
+    main()
+
+[/file]
+[/template]

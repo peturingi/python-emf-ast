@@ -1,0 +1,130 @@
+# Getting Started  
+  
+These instructions assume you are using macOS.  
+  
+## Dependencies  
+- [ ] homebrew  
+- [ ] OpenJDK 25  
+- [ ] jenv  
+- [ ] Eclipse Modeling Tools 2025-09  
+- [ ] Acceleo  
+  
+## Homebrew  
+Install homebrew:  
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+```
+  
+## jenv  
+Install jenv:  
+```
+brew install jenv	
+
+```
+  
+Add to ~/.zshrc:  
+```
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+```
+  
+Source .zshrc:  
+```
+source ~/.zshrc
+
+```
+	  
+## OpenJDK 25  
+Install OpenJDK 25:  
+```
+brew install openjdk@25		
+
+```
+Validate:  
+```
+brew list --versions openjdk
+openjdk 25.0.1 # <- expected output
+
+```
+		  
+### Add openjdk to jenv:  
+Assign openjdk location to an environment variable  
+```
+javaVersion=`brew --prefix openjdk`
+
+```
+Validate:  
+```
+echo $javaVersion
+/opt/homebrew/opt/openjdk # <- expected output
+
+```
+Add to jenv:  
+```
+jenv add $javaVersion
+
+```
+Tell jenv to configure the system to use openjdk 25:  
+```
+jenv global 25
+
+```
+Validate:  
+```
+jenv which java
+/Users/petur/.jenv/versions/25/bin/java # <- expected output
+
+```
+Source .zshrc:  
+```
+source ~/.zshrc
+
+```
+Validate:  
+```
+java --version
+openjdk 25.0.1 2025-10-21 # <- expected output
+OpenJDK Runtime Environment Homebrew (build 25.0.1)  # <- expected output
+OpenJDK 64-Bit Server VM Homebrew (build 25.0.1, mixed mode, sharing)  # <- expected output
+
+```
+  
+  
+## Eclipse Modeling Tools  
+Visit [https://www.eclipse.org/downloads/](https://www.eclipse.org/downloads/)  
+Click "Download Packages"  
+Click "Eclipse Modeling Tools"  
+Under "Download Links", select your OS and Architecture, download and install.  
+  
+### Update Eclipse for JDK 25  
+Open Eclipse  
+Create a workspace when prompted. Any location is ok.  
+Wait a few seconds, at the bottom view in Eclipse, you will be asked if you want to enable JDK 25 support. Do so.  
+Restart Eclipse once updated for JDK 25.  
+Next time you launch Eclipse, it will ask if you want to install the 2025-12 M2 milestone. Doing so is not needed.  
+Update Eclipse  
+Help -> Check For Updates. If any updates available, install them.  
+  
+# Install Acceleo 3.7 from Eclipse Marketplace  
+  
+  
+# Import the project into Eclipse  
+File -> Import  
+Expand General, select Existing Projects into Workspace  
+Next  
+Select root directory: Pathname of the directory in which you checked out this project  
+Finish  
+  
+  
+Configure Eclipse to use OpenJDK 25  
+Eclipse -> Settings -> Java -> Installed JREs -> Add...  -> Standard VM  
+Enter "/opt/homebrew/Cellar/openjdk/25.0.1/libexec/openjdk.jdk/Contents/Home" in "JRE Home"  
+Enter "OpenJDK 25" in JRE name  
+Check OpenJDK 25  
+Finish  
+
+# Genrate the python visitor:
+Run ./dk.ingi.emf.python.ast.api/src/dk/ingi/emf/python/ast/api/common/Generate.java
+  
