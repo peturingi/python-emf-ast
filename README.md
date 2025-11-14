@@ -125,7 +125,7 @@ Load generated `.ast` files into Eclipse OCL environment. Define constraints in 
 
 ### Type Mapping
 
-Python constants mapped to EMF via `Constant.value` (EString) and `Constant.kind`:
+Python constants mapped to EMF via `Constant.value` (EString) and `Constant.kind`.
 
 ### XML Sanitization
 
